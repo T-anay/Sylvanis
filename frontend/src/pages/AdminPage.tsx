@@ -37,6 +37,13 @@ export const AdminPage = () => {
     }
   };
 
+  const getImageUrl = (path: string | null) => {
+    if (!path) return '';
+    if (path.startsWith('http')) return path;
+    const baseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:8080/api').replace('/api', '');
+    return `${baseUrl}${path}`;
+  };
+
   const fetchIncidents = async () => {
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080/api'}/incidents`);
@@ -330,10 +337,10 @@ export const AdminPage = () => {
                       {inc.imagePath ? (
                         <div style={{ position: 'relative', display: 'inline-block' }}>
                           <img
-                            src={inc.imagePath}
+                            src={getImageUrl(inc.imagePath)}
                             alt="Kanıt"
                             style={{ width: 80, height: 60, objectFit: 'cover', borderRadius: '8px', cursor: 'zoom-in', border: `2px solid ${cardBorder}`, display: 'block' }}
-                            onClick={() => setSelectedImage(inc.imagePath)}
+                            onClick={() => setSelectedImage(getImageUrl(inc.imagePath))}
                             onError={(e) => {
                               e.currentTarget.style.display = 'none';
                               if (e.currentTarget.parentElement) {
@@ -341,7 +348,7 @@ export const AdminPage = () => {
                               }
                             }}
                           />
-                          <div onClick={() => setSelectedImage(inc.imagePath)} style={{ position: 'absolute', bottom: 3, right: 3, background: 'rgba(0,0,0,0.55)', padding: '2px', borderRadius: '4px', cursor: 'zoom-in', display: 'flex' }}>
+                          <div onClick={() => setSelectedImage(getImageUrl(inc.imagePath))} style={{ position: 'absolute', bottom: 3, right: 3, background: 'rgba(0,0,0,0.55)', padding: '2px', borderRadius: '4px', cursor: 'zoom-in', display: 'flex' }}>
                             <Eye size={11} color="#fff" />
                           </div>
                         </div>
