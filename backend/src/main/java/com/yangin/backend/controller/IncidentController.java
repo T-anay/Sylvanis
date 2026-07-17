@@ -89,6 +89,9 @@ public class IncidentController {
 
         // If an image is provided, ask AI for verification and save it locally
         if (file != null && !file.isEmpty()) {
+            // CALL AI BEFORE transferTo consumes the file!
+            VisionPredictionResponse aiResult = aiServiceClient.predictVision(file);
+
             try {
                 String projectDir = System.getProperty("user.dir");
                 java.io.File uploadDir = new java.io.File(projectDir, "uploads");
@@ -108,7 +111,6 @@ public class IncidentController {
                 System.err.println("Failed to save uploaded file: " + e.getMessage());
             }
 
-            VisionPredictionResponse aiResult = aiServiceClient.predictVision(file);
             if (aiResult != null && !aiResult.getDetections().isEmpty()) {
                 incident.setAiConfirmedFire(aiResult.getFire_detected());
                 
