@@ -20,9 +20,9 @@ app.add_middleware(
 )
 
 # Load Models
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-WEATHER_MODEL_PATH = os.path.join(ROOT_DIR, "weather_fire_model.pkl")
-YOLO_MODEL_PATH = os.path.join(ROOT_DIR, "runs", "YOLOv11_Yangin_Hizli-3", "weights", "best.pt")
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+WEATHER_MODEL_PATH = os.path.join(CURRENT_DIR, "weather_fire_model.pkl")
+YOLO_MODEL_PATH = os.path.join(CURRENT_DIR, "best.pt")
 
 try:
     weather_model = joblib.load(WEATHER_MODEL_PATH)
