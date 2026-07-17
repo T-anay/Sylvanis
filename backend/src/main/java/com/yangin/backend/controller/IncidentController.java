@@ -103,7 +103,7 @@ public class IncidentController {
                 String uniqueName = System.currentTimeMillis() + "_" + java.util.UUID.randomUUID().toString().substring(0, 8) + ext;
                 java.io.File dest = new java.io.File(uploadDir, uniqueName);
                 file.transferTo(dest);
-                incident.setImagePath("http://localhost:8080/uploads/" + uniqueName);
+                incident.setImagePath("/uploads/" + uniqueName);
             } catch (Exception e) {
                 System.err.println("Failed to save uploaded file: " + e.getMessage());
             }
