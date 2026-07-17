@@ -350,8 +350,8 @@ export const DashboardPage = () => {
     const fetchMapData = async () => {
       try {
         const [incRes, offRes] = await Promise.all([
-          fetch('http://localhost:8080/api/incidents'),
-          fetch('http://localhost:8080/api/map-data/official-fires')
+          fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080/api'}/incidents`),
+          fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080/api'}/map-data/official-fires`)
         ]);
         if (incRes.ok) setIncidents(await incRes.json());
         if (offRes.ok) setOfficialFires(await offRes.json());
@@ -394,7 +394,7 @@ export const DashboardPage = () => {
             let riskScore = 0;
             try {
               // Call real ML model API
-              const apiRes = await fetch('http://localhost:8080/api/weather/risk', {
+              const apiRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080/api'}/weather/risk`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -485,7 +485,7 @@ export const DashboardPage = () => {
             return { ...cam, status: 'clear', aiScore: t('dashboard.live_video', 'Live Video') };
           }
           try {
-            const res = await fetch(`http://localhost:8080/api/incidents/analyze-camera?url=${encodeURIComponent(cam.url)}`);
+            const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080/api'}/incidents/analyze-camera?url=${encodeURIComponent(cam.url)}`);
             if (res.ok) {
               const data = await res.json();
               updatedAny = true;
@@ -613,7 +613,7 @@ export const DashboardPage = () => {
             // Query real ML model endpoint
             let riskScore = 0;
             try {
-              const riskRes = await fetch('http://localhost:8080/api/weather/risk', {
+              const riskRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080/api'}/weather/risk`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

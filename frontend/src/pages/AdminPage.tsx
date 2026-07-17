@@ -39,7 +39,7 @@ export const AdminPage = () => {
 
   const fetchIncidents = async () => {
     try {
-      const res = await fetch('http://localhost:8080/api/incidents');
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080/api'}/incidents`);
       if (res.ok) {
         setIncidents(await res.json());
       } else throw new Error();
@@ -62,7 +62,7 @@ export const AdminPage = () => {
 
   const deleteIncident = async (id: number) => {
     const token = sessionStorage.getItem('sylvanis_admin_token');
-    try { await fetch(`http://localhost:8080/api/incidents/${id}`, { 
+    try { await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080/api'}/incidents/${id}`, { 
       method: 'DELETE',
       headers: { 'Authorization': `Basic ${token}` }
     }); } catch { }
@@ -71,7 +71,7 @@ export const AdminPage = () => {
 
   const verifyIncident = async (id: number) => {
     const token = sessionStorage.getItem('sylvanis_admin_token');
-    try { await fetch(`http://localhost:8080/api/incidents/${id}/verify?isFire=true`, { 
+    try { await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8080/api'}/incidents/${id}/verify?isFire=true`, { 
       method: 'PUT',
       headers: { 'Authorization': `Basic ${token}` }
     }); } catch { }
