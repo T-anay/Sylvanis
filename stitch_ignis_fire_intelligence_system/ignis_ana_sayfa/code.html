@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IGNIS | Fire Detection Platform</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#93000a",
+                    "tertiary-fixed-dim": "#b9c7e0",
+                    "surface-container": "#2d1b16",
+                    "primary-container": "#ff571a",
+                    "surface-variant": "#44302a",
+                    "on-primary-fixed": "#3a0b00",
+                    "outline": "#ad897e",
+                    "on-tertiary-container": "#1c2a3d",
+                    "error": "#ffb4ab",
+                    "primary": "#ffb59e",
+                    "primary-fixed-dim": "#ffb59e",
+                    "inverse-primary": "#ae3200",
+                    "on-surface": "#fcdcd3",
+                    "outline-variant": "#5c4037",
+                    "secondary": "#c8c6c5",
+                    "on-surface-variant": "#e6beb2",
+                    "tertiary-container": "#8392a9",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-low": "#281712",
+                    "primary-fixed": "#ffdbd0",
+                    "surface-container-lowest": "#190a06",
+                    "on-primary-fixed-variant": "#852400",
+                    "inverse-surface": "#fcdcd3",
+                    "on-secondary-fixed-variant": "#474746",
+                    "inverse-on-surface": "#3f2c26",
+                    "on-primary-container": "#521300",
+                    "background": "#1f0f0b",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-tertiary": "#233144",
+                    "surface-dim": "#1f0f0b",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-secondary": "#313030",
+                    "on-primary": "#5e1700",
+                    "on-tertiary-fixed": "#0d1c2f",
+                    "tertiary-fixed": "#d5e3fd",
+                    "surface-container-high": "#382620",
+                    "secondary-container": "#474746",
+                    "surface": "#1f0f0b",
+                    "surface-bright": "#49342e",
+                    "surface-container-highest": "#44302a",
+                    "on-background": "#fcdcd3",
+                    "on-tertiary-fixed-variant": "#3a485c",
+                    "on-secondary-container": "#b7b5b4",
+                    "tertiary": "#b9c7e0",
+                    "surface-tint": "#ffb59e",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-error": "#690005"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "2xl": "48px",
+                    "3xl": "64px",
+                    "lg": "24px",
+                    "xl": "32px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["JetBrains Mono"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-sm": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        .glass-panel {
+            background: rgba(45, 27, 22, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(92, 64, 55, 0.3);
+        }
+        .glow-alert {
+            box-shadow: 0 0 15px rgba(255, 87, 26, 0.4);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-body-md text-body-md">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-md py-sm max-w-full bg-background/90 dark:bg-background/90 backdrop-blur-md border-b border-outline-variant/20 shadow-sm transition-all">
+<div class="flex items-center gap-md">
+<span class="font-headline-lg text-headline-lg font-black tracking-tighter text-primary">IGNIS</span>
+<div class="hidden md:flex gap-lg ml-xl">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 cursor-pointer active:scale-95 transition-colors duration-200" href="#">Home</a>
+<a class="text-on-surface-variant font-medium hover:text-primary cursor-pointer active:scale-95 transition-colors duration-200" href="#">Report Fire</a>
+<a class="text-on-surface-variant font-medium hover:text-primary cursor-pointer active:scale-95 transition-colors duration-200" href="#">Monitoring Map</a>
+<a class="text-on-surface-variant font-medium hover:text-primary cursor-pointer active:scale-95 transition-colors duration-200" href="#">About Us</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button aria-label="notifications_active" class="text-primary hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+</button>
+<button class="bg-primary-container text-on-primary-container px-md py-sm rounded font-label-md hover:bg-primary-container/80 transition-colors">
+                Profile
+            </button>
+</div>
+</nav>
+<main class="flex-grow pt-24 pb-3xl">
+<!-- Hero Section -->
+<section class="relative w-full min-h-[819px] flex items-center px-lg py-3xl overflow-hidden">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-background/70 z-10"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
+<img class="w-full h-full object-cover z-0 filter contrast-125 saturate-50 brightness-75" data-alt="A dramatic aerial view of a dense, dark forest canopy at dawn. Subtle, glowing geometric overlays reminiscent of satellite targeting and thermal imaging interfaces are superimposed on the image. The lighting is moody and low-key, with technical UI elements in vibrant safety orange and crisp white contrasting against the deep green and charcoal landscape. The overall aesthetic is high-stakes, industrial tech." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCisBo57th1ALU_6HgM8g0svTeTtMVSGVyk3JfdW4yjFRKLQV97XlQhvf1OEn4aRbHHBn8UJreVrH5q-9ZNRpMJPxu1AZNQ5j_ifpppz3fNxqC04uOtT0OWsRDWEdE3jd8kYCNhjAMA14pqbte1God8a1Z3bG6aPowR1DANFnaykSKlCz4OCza9b8BWBZ1poNBhf84QTf1Cfb2I_y4teVaHefuECQ2gtXF79JbFeKCTvx0BBZOl02GwsVIY_JgpxOyx9C_NFmEn4gr"/>
+</div>
+<div class="relative z-20 max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<div class="lg:col-span-8 flex flex-col gap-lg justify-center">
+<div class="inline-flex items-center gap-sm bg-surface-container/80 px-sm py-xs rounded border border-outline-variant/30 w-fit">
+<span class="material-symbols-outlined text-primary text-sm pulse-animation" style="font-variation-settings: 'FILL' 1;">emergency</span>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Global Monitoring Active</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-background">Protecting Our Forests with <span class="text-primary">AI &amp; Satellite</span> Intelligence</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Advanced real-time detection systems designed to minimize response time and protect critical ecosystems. Built for precision. Engineered for urgency.</p>
+<div class="flex flex-wrap gap-md mt-sm">
+<button class="bg-primary-container hover:bg-primary text-on-primary-container font-label-md text-label-md px-xl py-md rounded-lg flex items-center gap-sm transition-all duration-300 shadow-[0_0_15px_rgba(255,87,26,0.3)] hover:shadow-[0_0_20px_rgba(255,87,26,0.5)]">
+<span class="material-symbols-outlined">map</span>
+                            Go to Map
+                        </button>
+<button class="border border-outline hover:border-primary text-on-surface font-label-md text-label-md px-xl py-md rounded-lg flex items-center gap-sm transition-all duration-300 bg-surface-container/50 hover:bg-surface-container">
+<span class="material-symbols-outlined text-error">local_fire_department</span>
+                            Report a Fire
+                        </button>
+</div>
+</div>
+<div class="lg:col-span-4 flex items-center justify-center">
+<div class="glass-panel p-md rounded-xl w-full flex flex-col gap-sm relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+<div class="flex justify-between items-center mb-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Live Feed Status</span>
+<span class="material-symbols-outlined text-secondary text-sm">satellite_alt</span>
+</div>
+<div class="flex flex-col gap-xs border-b border-outline-variant/30 pb-sm">
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface">NASA MODIS</span>
+<span class="font-label-sm text-label-sm text-tertiary">Active</span>
+</div>
+<div class="w-full bg-surface h-1 rounded overflow-hidden">
+<div class="bg-primary h-full w-[95%]"></div>
+</div>
+</div>
+<div class="flex flex-col gap-xs pt-xs">
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface">AI Vision Nodes</span>
+<span class="font-label-sm text-label-sm text-tertiary">Scanning</span>
+</div>
+<div class="w-full bg-surface h-1 rounded overflow-hidden">
+<div class="bg-primary h-full w-[80%] opacity-70"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="max-w-7xl mx-auto px-lg py-3xl">
+<div class="mb-2xl">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-sm">Detection Core</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Multi-layered monitoring combining space-born assets with ground intelligence.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-md auto-rows-[250px]">
+<!-- Satellite Monitoring -->
+<div class="md:col-span-8 glass-panel rounded-xl p-lg relative overflow-hidden group">
+<div class="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-500" data-alt="A highly detailed, technical rendering of a satellite orbiting Earth over a forest region. Thermal heat map overlays in vibrant oranges and reds highlight specific coordinates. The overall tone is dark, industrial, and analytical, utilizing a deep charcoal background with precise technical UI lines." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCj23Rb8PtHLkwsMDbTYiTWF7FNd3ZrsoAJKothAJFqS33m-fTZ3plgQuPbXFLxY0GY3H1YGaA2gTXcf5ttnhOjDem3eCa1cI2D8fcqTAMKdWWvUnsFfOEeJjtoywf7xv5E_wP3_z2wLN618f02rAGeh_DhzZXQ-2F39n5lp2c_KbsvSy3gvw93opmzrsi2r5vzzYLjxFfqudsrPHnKi50oIj39bOM8Hswhm2Qh9XTJabWhCXDFaObtcLUyinkQzMOhb0rQfLZt8GTa'); background-size: cover;"></div>
+<div class="relative z-10 flex flex-col h-full justify-end">
+<div class="bg-surface/80 p-sm rounded w-fit mb-md border border-outline-variant/50">
+<span class="material-symbols-outlined text-primary text-3xl">satellite_alt</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">NASA Satellite Monitoring</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">Ingesting real-time thermal anomaly data from MODIS and VIIRS instruments to detect ignition points globally within minutes.</p>
+</div>
+</div>
+<!-- AI Analysis -->
+<div class="md:col-span-4 bg-surface-container rounded-xl p-lg border border-outline-variant/30 flex flex-col relative overflow-hidden">
+<div class="absolute -right-10 -top-10 opacity-5">
+<span class="material-symbols-outlined" style="font-size: 200px;">psychology</span>
+</div>
+<div class="bg-surface/80 p-sm rounded w-fit mb-md border border-outline-variant/50 z-10">
+<span class="material-symbols-outlined text-secondary text-3xl">psychology</span>
+</div>
+<div class="mt-auto z-10">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">AI Analysis</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Advanced computer vision systems process tower cam feeds to identify smoke plumes before thermal detection.</p>
+</div>
+</div>
+<!-- Citizen Reports -->
+<div class="md:col-span-4 bg-surface-container rounded-xl p-lg border border-outline-variant/30 flex flex-col relative">
+<div class="bg-surface/80 p-sm rounded w-fit mb-md border border-outline-variant/50">
+<span class="material-symbols-outlined text-primary text-3xl">campaign</span>
+</div>
+<div class="mt-auto">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Citizen Reports</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Crowdsourced intelligence with mobile reporting integration for ground-truth verification.</p>
+</div>
+</div>
+<!-- Stats Preview (Spanning 8) -->
+<div class="md:col-span-8 glass-panel rounded-xl p-lg flex items-center justify-between border-l-4 border-l-primary">
+<div class="flex gap-xl w-full justify-around">
+<div class="flex flex-col items-center">
+<span class="font-display-lg text-display-lg text-primary tracking-tighter">1,240</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-xs">Active Stations</span>
+</div>
+<div class="h-full w-px bg-outline-variant/30 hidden sm:block"></div>
+<div class="flex flex-col items-center">
+<span class="font-display-lg text-display-lg text-on-surface tracking-tighter">04<span class="text-secondary text-headline-sm">m</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-xs">Avg Response Time</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="border-t border-outline-variant/20 bg-surface-container-low py-3xl px-lg relative overflow-hidden">
+<!-- decorative background lines -->
+<div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(#5c4037 1px, transparent 1px), linear-gradient(90deg, #5c4037 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="max-w-4xl mx-auto text-center relative z-10">
+<span class="font-label-md text-label-md text-primary uppercase tracking-[0.2em] mb-md block">Mission Statement</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-lg">Reducing response time from hours to minutes.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                    IGNIS was engineered to bridge the gap between initial ignition and emergency response. By synthesizing vast amounts of satellite telemetry, ground sensor data, and community input through robust AI models, we provide actionable intelligence to first responders faster than ever before.
+                </p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-lg px-xl flex flex-col md:flex-row justify-between items-center gap-md bg-surface-container-lowest border-t border-outline-variant/10">
+<span class="font-label-md text-label-md text-primary tracking-tighter">IGNIS</span>
+<div class="flex flex-wrap gap-md justify-center">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface underline-offset-4 hover:underline transition-all" href="#">Emergency Protocol</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface underline-offset-4 hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface underline-offset-4 hover:underline transition-all" href="#">Contact Support</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface underline-offset-4 hover:underline transition-all" href="#">Regional Status</a>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-center md:text-right">© 2024 IGNIS Fire Detection. All systems operational.</span>
+</footer>
+</body></html>

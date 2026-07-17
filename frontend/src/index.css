@@ -1,0 +1,253 @@
+:root {
+  --font-family: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* LIGHT THEME (High Contrast) */
+  --background: #ffffff;
+  --on-background: #0f172a;
+  --primary: #059669;
+  --on-primary: #ffffff;
+  --primary-container: #d1fae5;
+  --on-primary-container: #065f46;
+  
+  --surface: #ffffff;
+  --on-surface: #0f172a;
+  --surface-variant: #f1f5f9;
+  --on-surface-variant: #475569;
+  
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f8fafc;
+  --surface-container: #f1f5f9;
+  --surface-container-high: #e2e8f0;
+  --surface-container-highest: #cbd5e1;
+  
+  --outline: #94a3b8;
+  --outline-variant: #cbd5e1;
+  
+  --secondary: #334155;
+  --on-secondary: #ffffff;
+  --secondary-container: #e2e8f0;
+  --on-secondary-container: #0f172a;
+  
+  --error: #ef4444;
+  --on-error: #ffffff;
+  --error-container: #fee2e2;
+  --on-error-container: #7f1d1d;
+
+  /* Eşdeğerlikler */
+  --bg-color: var(--background);
+  --text-color: var(--on-background);
+  --text-muted: var(--on-surface-variant);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+  --glass-blur: blur(16px);
+}
+
+[data-theme="dark"] {
+  /* DARK THEME (High Contrast) */
+  --background: #0b0f19;
+  --on-background: #f8fafc;
+  --primary: #10b981;
+  --on-primary: #022c22;
+  --primary-container: #064e3b;
+  --on-primary-container: #34d399;
+  
+  --surface: #0f172a;
+  --on-surface: #f8fafc;
+  --surface-variant: #1e293b;
+  --on-surface-variant: #94a3b8;
+  
+  --surface-container-lowest: #020617;
+  --surface-container-low: #0b0f19;
+  --surface-container: #0f172a;
+  --surface-container-high: #1e293b;
+  --surface-container-highest: #334155;
+  
+  --outline: #475569;
+  --outline-variant: #334155;
+  
+  --secondary: #cbd5e1;
+  --on-secondary: #0f172a;
+  --secondary-container: #334155;
+  --on-secondary-container: #f1f5f9;
+  
+  --error: #f87171;
+  --on-error: #450a0a;
+  --error-container: #7f1d1d;
+  --on-error-container: #fecaca;
+
+  /* Eşdeğerlikler */
+  --bg-color: var(--background);
+  --text-color: var(--on-background);
+  --text-muted: var(--on-surface-variant);
+  --glass-bg: rgba(15, 23, 42, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  --glass-blur: blur(16px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 16px;
+}
+
+.btn-primary {
+  background-color: var(--primary-container);
+  color: var(--on-primary-container);
+  border: 1px solid var(--primary-container);
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 15px rgba(255, 87, 26, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(255, 87, 26, 0.5);
+}
+
+.btn-icon {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+}
+
+.btn-icon:hover {
+  opacity: 0.8;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite;
+}
+
+/* RESPONSIVE DESIGN (Mobile) */
+@media (max-width: 768px) {
+  /* Layout General */
+  .bento-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+  .bento-grid > div {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 250px;
+  }
+  
+  /* Navbar adjustments */
+  nav {
+    padding: 1rem !important;
+  }
+  nav h1 {
+    font-size: 1.5rem !important;
+  }
+  .nav-links {
+    display: none !important;
+  }
+  .nav-actions .lang-switch, .nav-actions .theme-switch, .nav-actions .admin-btn {
+    display: none !important; /* Hide some desktop buttons to save space, or put them in the menu */
+  }
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+
+  /* Home Page adjustments */
+  .hero-title {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+  .stats-container {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+  .stats-divider {
+    width: 100% !important;
+    height: 1px !important;
+  }
+  .footer-content {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    text-align: center !important;
+  }
+
+  /* Dashboard adjustments */
+  .dashboard-container {
+    padding: 1rem !important;
+    margin-top: 60px !important;
+    flex-direction: column !important;
+  }
+  .map-container {
+    height: 60vh !important;
+    width: 100% !important;
+  }
+  .dashboard-sidebar {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+  
+  /* Form adjustments (Report Incident) */
+  .report-form {
+    width: 100% !important;
+    padding: 1rem !important;
+  }
+  .report-form input, .report-form textarea, .report-form button {
+    width: 100% !important;
+  }
+
+  /* Admin Page adjustments */
+  .admin-login-box {
+    padding: 2rem 1.5rem !important;
+    width: 90% !important;
+  }
+  .admin-stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Table adjustments (Admin) */
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    display: block;
+    width: 100%;
+  }
+}

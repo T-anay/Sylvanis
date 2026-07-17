@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IGNIS Monitoring Map - Turkey</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#b9c7e0",
+                        "surface-container": "#2d1b16",
+                        "primary-container": "#ff571a",
+                        "surface-variant": "#44302a",
+                        "on-primary-fixed": "#3a0b00",
+                        "outline": "#ad897e",
+                        "on-tertiary-container": "#1c2a3d",
+                        "error": "#ffb4ab",
+                        "primary": "#ffb59e",
+                        "primary-fixed-dim": "#ffb59e",
+                        "inverse-primary": "#ae3200",
+                        "on-surface": "#fcdcd3",
+                        "outline-variant": "#5c4037",
+                        "secondary": "#c8c6c5",
+                        "on-surface-variant": "#e6beb2",
+                        "tertiary-container": "#8392a9",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#281712",
+                        "primary-fixed": "#ffdbd0",
+                        "surface-container-lowest": "#190a06",
+                        "on-primary-fixed-variant": "#852400",
+                        "inverse-surface": "#fcdcd3",
+                        "on-secondary-fixed-variant": "#474746",
+                        "inverse-on-surface": "#3f2c26",
+                        "on-primary-container": "#521300",
+                        "background": "#1f0f0b",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-tertiary": "#233144",
+                        "surface-dim": "#1f0f0b",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-secondary": "#313030",
+                        "on-primary": "#5e1700",
+                        "on-tertiary-fixed": "#0d1c2f",
+                        "tertiary-fixed": "#d5e3fd",
+                        "surface-container-high": "#382620",
+                        "secondary-container": "#474746",
+                        "surface": "#1f0f0b",
+                        "surface-bright": "#49342e",
+                        "surface-container-highest": "#44302a",
+                        "on-background": "#fcdcd3",
+                        "on-tertiary-fixed-variant": "#3a485c",
+                        "on-secondary-container": "#b7b5b4",
+                        "tertiary": "#b9c7e0",
+                        "surface-tint": "#ffb59e",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "2xl": "48px",
+                        "3xl": "64px",
+                        "lg": "24px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .map-grid-overlay {
+            background-image: 
+                linear-gradient(to right, rgba(173, 137, 126, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(173, 137, 126, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .pulse-alert {
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(255, 87, 26, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(255, 87, 26, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(255, 87, 26, 0); }
+        }
+        .hud-panel {
+            background: rgba(45, 27, 22, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(92, 64, 55, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background h-screen w-screen overflow-hidden flex flex-col font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-md py-sm max-w-full bg-background/90 dark:bg-background/90 backdrop-blur-md border-b border-outline-variant/20 shadow-sm">
+<div class="flex items-center gap-xl">
+<span class="font-headline-lg text-headline-lg font-black tracking-tighter text-primary">IGNIS</span>
+<nav class="hidden md:flex gap-lg items-center">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 cursor-pointer active:scale-95 font-headline-sm text-headline-sm font-bold" href="#">Home</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 cursor-pointer active:scale-95 font-headline-sm text-headline-sm font-bold" href="#">Report Fire</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 hover:text-primary transition-colors duration-200 cursor-pointer active:scale-95 font-headline-sm text-headline-sm font-bold" href="#">Monitoring Map</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 cursor-pointer active:scale-95 font-headline-sm text-headline-sm font-bold" href="#">About Us</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 cursor-pointer active:scale-95 flex items-center justify-center p-xs rounded-full">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications_active</span>
+</button>
+<button class="text-primary hover:text-primary-container font-headline-sm text-headline-sm font-bold transition-colors duration-200 cursor-pointer active:scale-95 flex items-center gap-xs">
+                Profile
+            </button>
+</div>
+</header>
+<!-- Main Map Container -->
+<main class="relative w-full h-full pt-[72px] bg-surface-dim">
+<!-- Base Map Placeholder -->
+<div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
+<div class="bg-cover bg-center w-full h-full opacity-60 mix-blend-screen" data-alt="A highly detailed, stylized dark-mode topographical map of Turkey. The terrain is rendered in deep charcoals and slate grays, emphasizing elevation changes with subtle, metallic shading. Overlaying the map are complex, glowing orange and red thermal gradient heatmaps indicating severe fire spread risk. Vibrant red arrows simulate wind vectors pushing across the landscape. The scene is illuminated as if viewed on a high-tech military or aerospace command center monitor, creating an urgent, authoritative atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAXb-bAL8lxgMK-3DS7QcwEZjlDMu9XBd52Vt1X1yJ0oYCgzjg1vZZ03rtptw69k1b8l6SkXrQ3BqkZeT0DTfJMC0eFSc3sXu5OxLYhBfnAq61Vy9rPxeKWU9AcQSUfx7sZDxjSG3utqqLxCQ6kEydOn0qkPv2hM7D3jtfceB7gwIJf3OyCWcuvYeJcXwUQLx_HO85reC7v6vVuPdMM9-HL6n8f38X0HXJOB4CocOWmZPxv0Z3wI-YDZINaVphkZBF3fXmNrt2c08ny')"></div>
+<div class="absolute inset-0 map-grid-overlay pointer-events-none"></div>
+</div>
+<!-- SideNavBar (Environmental Controls) -->
+<aside class="fixed left-md top-24 z-40 w-64 flex flex-col gap-xs p-xs bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-xl border border-outline-variant/30 shadow-[0_0_15px_rgba(255,87,26,0.2)] rounded-xl">
+<div class="p-sm mb-xs border-b border-outline-variant/20">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Environmental Controls</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-80">Real-time detection feeds</p>
+</div>
+<nav class="flex flex-col gap-xs">
+<button class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-variant/50 rounded-lg m-1 hover:bg-primary/10 transition-all duration-300 ease-in-out hover:translate-x-1 w-full text-left font-label-md text-label-md">
+<span class="material-symbols-outlined text-secondary">satellite_alt</span>
+                    NASA Satellite
+                </button>
+<button class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-variant/50 rounded-lg m-1 hover:bg-primary/10 transition-all duration-300 ease-in-out hover:translate-x-1 w-full text-left font-label-md text-label-md">
+<span class="material-symbols-outlined text-secondary">psychology</span>
+                    AI Analysis
+                </button>
+<button class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-variant/50 rounded-lg m-1 hover:bg-primary/10 transition-all duration-300 ease-in-out hover:translate-x-1 w-full text-left font-label-md text-label-md">
+<span class="material-symbols-outlined text-secondary">campaign</span>
+                    Citizen Reports
+                </button>
+<div class="my-xs border-t border-outline-variant/20"></div>
+<button class="flex items-center gap-sm p-sm bg-primary-container text-on-primary-container rounded-lg m-1 hover:bg-primary/10 transition-all duration-300 ease-in-out hover:translate-x-1 w-full text-left font-label-md text-label-md shadow-[0_0_10px_rgba(255,87,26,0.3)]">
+<span class="material-symbols-outlined text-on-primary-container">thermostat</span>
+                    Temperature
+                </button>
+<button class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-variant/50 rounded-lg m-1 hover:bg-primary/10 transition-all duration-300 ease-in-out hover:translate-x-1 w-full text-left font-label-md text-label-md">
+<span class="material-symbols-outlined text-secondary">air</span>
+                    Wind Speed
+                </button>
+<button class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-variant/50 rounded-lg m-1 hover:bg-primary/10 transition-all duration-300 ease-in-out hover:translate-x-1 w-full text-left font-label-md text-label-md">
+<span class="material-symbols-outlined text-secondary">water_drop</span>
+                    Humidity
+                </button>
+</nav>
+<div class="mt-md pt-sm border-t border-outline-variant/20">
+<button class="w-full py-sm px-md bg-error-container text-on-error-container font-label-md text-label-md rounded-lg flex items-center justify-center gap-xs hover:brightness-110 active:scale-95 transition-all shadow-[0_0_15px_rgba(147,0,10,0.4)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+                    Emergency Broadcast
+                </button>
+</div>
+</aside>
+<!-- Dynamic Map Markers (Simulated Overlay) -->
+<div class="absolute inset-0 z-20 pointer-events-none">
+<!-- Active Fire Marker (NASA) -->
+<div class="absolute top-[35%] left-[45%] pointer-events-auto group cursor-pointer">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-12 h-12 bg-primary-container/20 rounded-full pulse-alert"></div>
+<div class="w-8 h-8 bg-surface-container border-2 border-primary-container rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(255,87,26,0.5)] z-10">
+<span class="material-symbols-outlined text-primary-container text-[16px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+</div>
+<!-- Tooltip -->
+<div class="absolute top-full mt-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50 w-max">
+<div class="hud-panel px-sm py-xs rounded-lg border-l-2 border-l-primary-container">
+<p class="font-label-sm text-label-sm text-on-surface font-bold">Izmir Region</p>
+<p class="font-label-sm text-[10px] text-primary-container">NASA Detected • 2m ago</p>
+</div>
+</div>
+</div>
+<!-- Citizen Report Marker -->
+<div class="absolute top-[50%] left-[30%] pointer-events-auto group cursor-pointer">
+<div class="relative flex items-center justify-center">
+<div class="w-6 h-6 bg-surface-container border-2 border-tertiary rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(185,199,224,0.3)] z-10">
+<span class="material-symbols-outlined text-tertiary text-[14px]">person_alert</span>
+</div>
+</div>
+</div>
+<!-- Wind Vector Overlay Indicators -->
+<div class="absolute top-[40%] left-[50%] opacity-60">
+<span class="material-symbols-outlined text-error rotate-45 text-4xl font-light">east</span>
+</div>
+<div class="absolute top-[38%] left-[52%] opacity-40">
+<span class="material-symbols-outlined text-error rotate-45 text-3xl font-light">east</span>
+</div>
+</div>
+<!-- Integrated Info Panel (Right Side) -->
+<div class="absolute right-md top-24 bottom-24 w-80 z-30 flex flex-col gap-md">
+<!-- Mode Toggle -->
+<div class="hud-panel rounded-xl p-xs flex gap-xs">
+<button class="flex-1 py-xs px-sm font-label-sm text-[11px] text-on-surface-variant hover:bg-surface-variant/40 rounded-lg transition-colors">Standard</button>
+<button class="flex-1 py-xs px-sm font-label-sm text-[11px] bg-primary-container/20 text-primary border border-primary/30 rounded-lg shadow-[0_0_10px_rgba(255,87,26,0.1)] transition-colors">Thermal</button>
+<button class="flex-1 py-xs px-sm font-label-sm text-[11px] text-on-surface-variant hover:bg-surface-variant/40 rounded-lg transition-colors">Wind</button>
+</div>
+<!-- Location Details Card -->
+<div class="hud-panel rounded-xl flex-1 flex flex-col overflow-hidden border-t-2 border-t-primary-container shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+<div class="p-md border-b border-outline-variant/30 flex justify-between items-start bg-surface-container-low/50">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">Izmir Sector 7</h3>
+<p class="font-label-sm text-label-sm text-primary flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px] pulse-alert rounded-full bg-primary/20" style="font-variation-settings: 'FILL' 1;">fiber_manual_record</span>
+                            Critical Spread Risk
+                        </p>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="p-md flex-1 flex flex-col gap-md overflow-y-auto custom-scrollbar">
+<!-- Weather Metrics Grid -->
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-surface-container/60 p-sm rounded-lg border border-outline-variant/20">
+<div class="flex items-center gap-xs mb-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">thermostat</span>
+<span class="font-label-sm text-[10px] uppercase">Temp</span>
+</div>
+<div class="font-headline-md text-headline-md text-error font-black">38°C</div>
+<div class="h-1 w-full bg-surface-variant mt-2 rounded-full overflow-hidden">
+<div class="h-full bg-error w-[85%]"></div>
+</div>
+</div>
+<div class="bg-surface-container/60 p-sm rounded-lg border border-outline-variant/20">
+<div class="flex items-center gap-xs mb-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">air</span>
+<span class="font-label-sm text-[10px] uppercase">Wind</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-primary font-bold">25 <span class="text-sm font-normal text-on-surface-variant">km/h</span></div>
+<div class="font-label-sm text-[10px] text-tertiary mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] rotate-45">north</span> NE
+                            </div>
+</div>
+<div class="bg-surface-container/60 p-sm rounded-lg border border-outline-variant/20">
+<div class="flex items-center gap-xs mb-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">water_drop</span>
+<span class="font-label-sm text-[10px] uppercase">Humidity</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold">12%</div>
+<div class="h-1 w-full bg-surface-variant mt-2 rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[12%]"></div>
+</div>
+</div>
+<div class="bg-surface-container/60 p-sm rounded-lg border border-outline-variant/20">
+<div class="flex items-center gap-xs mb-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">rainy</span>
+<span class="font-label-sm text-[10px] uppercase">Precip</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface-variant font-bold">0%</div>
+</div>
+</div>
+<!-- Threat Legend -->
+<div class="mt-auto pt-md border-t border-outline-variant/30">
+<h4 class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider mb-sm">Threat Level Legend</h4>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 rounded-full bg-error shadow-[0_0_8px_rgba(255,180,171,0.5)]"></div>
+<span class="font-label-sm text-label-sm text-on-surface">Critical (&gt;90% Spread Risk)</span>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 rounded-full bg-primary-container shadow-[0_0_8px_rgba(255,87,26,0.3)]"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">High Warning</span>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 rounded-full bg-tertiary"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Monitor Mode</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(45, 27, 22, 0.5); 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #5c4037; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #ad897e; 
+        }
+    </style>
+</body></html>

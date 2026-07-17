@@ -1,0 +1,19 @@
+.env
+.venv/
+__pycache__/
+.idea/
+.vscode/
+*.pyc
+
+# Machine Learning Datasets & Training Artifacts
+train/
+test/
+valid/
+dataset/
+runs/
+data.yaml
+train.py
+*.pt
+!best.pt
+*.pkl
+!weather_fire_model.pkl
