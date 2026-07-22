@@ -1,6 +1,11 @@
 import os
 import pandas as pd
 import joblib
+import torch
+# Limit PyTorch memory and thread footprint for resource-constrained Render Free tier
+torch.set_num_threads(1)
+torch.set_num_interop_threads(1)
+
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -105,6 +110,11 @@ async def predict_vision(file: UploadFile = File(...)):
                     "confidence": conf,
                     "box": {"x1": x1, "y1": y1, "x2": x2, "y2": y2}
                 })
+        
+        # Clean memory explicitly after inference
+        del results
+        import gc
+        gc.collect()
         
         return {
             "detections": detections,
