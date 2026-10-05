@@ -10,6 +10,11 @@
 
 **Live Demo / Canlı Demo:** [sylvanis.vercel.app](https://sylvanis.vercel.app)
 
+> [!NOTE]
+> **Demo Note:** The backend is hosted on Render.com's free tier, which spins down after periods of inactivity. The **first request may take 30–60 seconds** to respond while the server wakes up. Please wait a moment and refresh if the page doesn't load immediately.
+>
+> **Demo Notu:** Backend, Render.com'un ücretsiz planında barındırılmaktadır. Ücretsiz plan uzun süre işlem olmadığında sunucuyu uyku moduna alır. **İlk açılışta 30–60 saniye** beklemeniz gerekebilir. Sayfa hemen açılmazsa lütfen bekleyip yenileyin.
+
 ---
 
 ## 🇬🇧 English
