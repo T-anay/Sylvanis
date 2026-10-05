@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../contexts/ThemeContext';
 import { MapPin, AlertTriangle, UploadCloud, X, Crosshair } from 'lucide-react';
@@ -115,16 +115,16 @@ export const ReportFirePage = () => {
       });
       
       if (response.ok) {
-        showAlert("İhbar başarıyla gönderildi! Haritaya yönlendiriliyorsunuz...", "success");
+        showAlert("Ä°hbar baÅŸarÄ±yla gÃ¶nderildi! Haritaya yÃ¶nlendiriliyorsunuz...", "success");
         setTimeout(() => {
           navigate('/');
         }, 2000);
       } else {
-        showAlert("İhbar gönderilemedi. Lütfen tekrar deneyin.");
+        showAlert("Ä°hbar gÃ¶nderilemedi. LÃ¼tfen tekrar deneyin.");
       }
     } catch (e) {
       console.error(e);
-      showAlert("Sunucu bağlantı hatası oluştu.");
+      showAlert("Sunucu baÄŸlantÄ± hatasÄ± oluÅŸtu.");
     } finally {
       setIsSubmitting(false);
     }
@@ -134,7 +134,7 @@ export const ReportFirePage = () => {
     <div className="report-form" style={{ minHeight: '100vh', paddingTop: '100px', paddingBottom: '4rem', display: 'flex', justifyContent: 'center', background: 'var(--bg-color)', color: 'var(--text-color)' }}>
       <div style={{ maxWidth: '1000px', width: '100%', padding: '0 1rem' }}>
         
-        {/* Başlık Bölümü */}
+        {/* BaÅŸlÄ±k BÃ¶lÃ¼mÃ¼ */}
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <h1 style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '1rem', color: 'var(--text-color)' }}>
             {t('report.title')}
@@ -143,7 +143,7 @@ export const ReportFirePage = () => {
             {t('report.desc')}
           </p>
           
-          {/* Uyarı Kutusu */}
+          {/* UyarÄ± Kutusu */}
           <div style={{ 
             marginTop: '2rem', 
             background: 'var(--error-container)', 
@@ -161,10 +161,10 @@ export const ReportFirePage = () => {
           </div>
         </div>
 
-        {/* Ana İçerik Grid */}
+        {/* Ana Ä°Ã§erik Grid */}
         <div className="bento-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
           
-          {/* Sol Sütun */}
+          {/* Sol SÃ¼tun */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             
             {/* Incident Location */}
@@ -250,7 +250,7 @@ export const ReportFirePage = () => {
                         cursor: 'pointer', fontWeight: 'bold', boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
                       }}
                     >
-                      ×
+                      Ã—
                     </button>
                   </div>
                 ) : (
@@ -265,7 +265,7 @@ export const ReportFirePage = () => {
 
           </div>
 
-          {/* Sağ Sütun */}
+          {/* SaÄŸ SÃ¼tun */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             
             {/* Fire Details */}
@@ -392,7 +392,7 @@ export const ReportFirePage = () => {
                 marginTop: 'auto'
               }}
             >
-              {isSubmitting ? "Gönderiliyor..." : t('report.submit')}
+              {isSubmitting ? "GÃ¶nderiliyor..." : t('report.submit')}
             </button>
           </div>
 
@@ -425,7 +425,7 @@ export const ReportFirePage = () => {
                >
                   <TileLayer 
                     noWrap={true}
-                    url={theme === 'dark' ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"}
+                    url={theme === 'dark' ? "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}" : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
                   />
                   <LocationMarker position={selectedLocation} setPosition={setSelectedLocation} />
                </MapContainer>
@@ -466,3 +466,4 @@ export const ReportFirePage = () => {
     </div>
   );
 };
+

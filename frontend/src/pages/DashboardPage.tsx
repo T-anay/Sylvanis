@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AlertTriangle, Thermometer, Wind, Droplets, Leaf, Eye, Map as MapIcon, Activity, CloudRain, Sun, MapPin, Compass, Info } from 'lucide-react';
 import { LineChart, Line, ResponsiveContainer, YAxis } from 'recharts';
@@ -78,7 +78,7 @@ const userVerifiedIcon = new L.DivIcon({
            <svg width="34" height="34" viewBox="0 0 24 24" fill="#eab308" stroke="#fff" stroke-width="2">
              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
            </svg>
-           <span style="position: absolute; top: 3px; font-size: 14px;">🔥</span>
+           <span style="position: absolute; top: 3px; font-size: 14px;">ğŸ”¥</span>
          </div>`,
   className: 'custom-icon',
   iconSize: [34, 34],
@@ -90,7 +90,7 @@ const userPendingIcon = new L.DivIcon({
            <svg width="34" height="34" viewBox="0 0 24 24" fill="#3b82f6" stroke="#fff" stroke-width="2">
              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
            </svg>
-           <span style="position: absolute; top: 3px; font-size: 14px;">💨</span>
+           <span style="position: absolute; top: 3px; font-size: 14px;">ğŸ’¨</span>
          </div>`,
   className: 'custom-icon',
   iconSize: [34, 34],
@@ -132,7 +132,7 @@ const getTempIcon = (name: string, temp: number, color: string) => {
   return new L.DivIcon({
     html: `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));">
              <div style="background: rgba(15, 23, 42, 0.95); border: 2px solid ${color}; padding: 3px 8px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; color: #fff; white-space: nowrap; box-shadow: 0 0 10px ${color}88;">
-               ${Math.round(temp)}°
+               ${Math.round(temp)}Â°
              </div>
              <div style="font-size: 0.65rem; color: #fff; text-shadow: 1px 1px 2px #000; font-weight: 600; margin-top: 2px; white-space: nowrap;">
                ${name}
@@ -169,7 +169,7 @@ const getRainIcon = (name: string, rain: number, color: string) => {
   return new L.DivIcon({
     html: `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));">
              <div style="display: flex; align-items: center; background: rgba(15, 23, 42, 0.95); border: 2px solid ${color}; padding: 3px 8px; border-radius: 20px; gap: 4px; white-space: nowrap; color: #fff; box-shadow: 0 0 10px ${color}88;">
-               <span>${hasRain ? '🌧️' : '☀️'}</span>
+               <span>${hasRain ? 'ğŸŒ§ï¸' : 'â˜€ï¸'}</span>
                ${hasRain ? `<span style="font-size: 0.75rem; font-weight: bold;">${rain.toFixed(1)}</span>` : ''}
              </div>
              <div style="font-size: 0.65rem; color: #fff; text-shadow: 1px 1px 2px #000; font-weight: 600; margin-top: 2px; white-space: nowrap;">
@@ -202,7 +202,7 @@ const getAiRiskIcon = (name: string, risk: number, color: string) => {
   return new L.DivIcon({
     html: `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));">
              <div style="background: rgba(15, 23, 42, 0.95); border: 2px solid ${color}; padding: 3px 8px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; color: #fff; white-space: nowrap; box-shadow: 0 0 10px ${color}88; display: flex; align-items: center; gap: 3px;">
-               <span>🤖</span>
+               <span>ğŸ¤–</span>
                <span>%${risk}</span>
              </div>
              <div style="font-size: 0.65rem; color: #fff; text-shadow: 1px 1px 2px #000; font-weight: 600; margin-top: 2px; white-space: nowrap;">
@@ -216,12 +216,12 @@ const getAiRiskIcon = (name: string, risk: number, color: string) => {
 };
 
 const globalHotspots = [
-  { name: 'İstanbul', lat: 41.01, lng: 28.97 },
-  { name: 'Çanakkale', lat: 40.15, lng: 26.41 },
+  { name: 'Ä°stanbul', lat: 41.01, lng: 28.97 },
+  { name: 'Ã‡anakkale', lat: 40.15, lng: 26.41 },
   { name: 'Bursa', lat: 40.18, lng: 29.06 },
-  { name: 'İzmir', lat: 38.42, lng: 27.14 },
-  { name: 'Muğla', lat: 37.21, lng: 28.36 },
-  { name: 'Aydın', lat: 37.85, lng: 27.84 },
+  { name: 'Ä°zmir', lat: 38.42, lng: 27.14 },
+  { name: 'MuÄŸla', lat: 37.21, lng: 28.36 },
+  { name: 'AydÄ±n', lat: 37.85, lng: 27.84 },
   { name: 'Antalya', lat: 36.88, lng: 30.70 },
   { name: 'Mersin', lat: 36.81, lng: 34.64 },
   { name: 'Adana', lat: 37.00, lng: 35.32 },
@@ -235,8 +235,8 @@ const globalHotspots = [
   { name: 'Zonguldak', lat: 41.45, lng: 31.79 },
   { name: 'Erzurum', lat: 39.90, lng: 41.27 },
   { name: 'Malatya', lat: 38.35, lng: 38.31 },
-  { name: 'Diyarbakır', lat: 37.91, lng: 40.24 },
-  { name: 'Şanlıurfa', lat: 37.15, lng: 38.79 },
+  { name: 'DiyarbakÄ±r', lat: 37.91, lng: 40.24 },
+  { name: 'ÅanlÄ±urfa', lat: 37.15, lng: 38.79 },
   { name: 'Gaziantep', lat: 37.06, lng: 37.38 },
   { name: 'Van', lat: 38.50, lng: 43.38 }
 ];
@@ -279,16 +279,16 @@ export const DashboardPage = () => {
   React.useEffect(() => {
     const fetchStations = async () => {
       const stations = [
-        { name: 'İstanbul', lat: 41.01, lng: 28.97, tempFallback: 24, windDirFallback: 45, windSpeedFallback: 18, rainFallback: 0, humidityFallback: 65 },
+        { name: 'Ä°stanbul', lat: 41.01, lng: 28.97, tempFallback: 24, windDirFallback: 45, windSpeedFallback: 18, rainFallback: 0, humidityFallback: 65 },
         { name: 'Ankara', lat: 39.93, lng: 32.85, tempFallback: 26, windDirFallback: 180, windSpeedFallback: 12, rainFallback: 0, humidityFallback: 45 },
-        { name: 'İzmir', lat: 38.42, lng: 27.14, tempFallback: 29, windDirFallback: 270, windSpeedFallback: 20, rainFallback: 0, humidityFallback: 50 },
+        { name: 'Ä°zmir', lat: 38.42, lng: 27.14, tempFallback: 29, windDirFallback: 270, windSpeedFallback: 20, rainFallback: 0, humidityFallback: 50 },
         { name: 'Antalya', lat: 36.88, lng: 30.70, tempFallback: 32, windDirFallback: 135, windSpeedFallback: 15, rainFallback: 0.1, humidityFallback: 60 },
-        { name: 'Muğla', lat: 37.21, lng: 28.36, tempFallback: 30, windDirFallback: 220, windSpeedFallback: 25, rainFallback: 0, humidityFallback: 52 },
+        { name: 'MuÄŸla', lat: 37.21, lng: 28.36, tempFallback: 30, windDirFallback: 220, windSpeedFallback: 25, rainFallback: 0, humidityFallback: 52 },
         { name: 'Adana', lat: 37.00, lng: 35.32, tempFallback: 33, windDirFallback: 90, windSpeedFallback: 10, rainFallback: 0.5, humidityFallback: 55 },
         { name: 'Trabzon', lat: 41.00, lng: 39.72, tempFallback: 22, windDirFallback: 315, windSpeedFallback: 14, rainFallback: 2.3, humidityFallback: 80 },
-        { name: 'Diyarbakır', lat: 37.91, lng: 40.24, tempFallback: 38, windDirFallback: 160, windSpeedFallback: 8, rainFallback: 0, humidityFallback: 25 },
+        { name: 'DiyarbakÄ±r', lat: 37.91, lng: 40.24, tempFallback: 38, windDirFallback: 160, windSpeedFallback: 8, rainFallback: 0, humidityFallback: 25 },
         { name: 'Erzurum', lat: 39.90, lng: 41.27, tempFallback: 18, windDirFallback: 240, windSpeedFallback: 16, rainFallback: 0, humidityFallback: 35 },
-        { name: 'Çanakkale', lat: 40.15, lng: 26.41, tempFallback: 25, windDirFallback: 30, windSpeedFallback: 22, rainFallback: 0, humidityFallback: 60 },
+        { name: 'Ã‡anakkale', lat: 40.15, lng: 26.41, tempFallback: 25, windDirFallback: 30, windSpeedFallback: 22, rainFallback: 0, humidityFallback: 60 },
         { name: 'Athens', lat: 37.98, lng: 23.72, tempFallback: 28, windDirFallback: 190, windSpeedFallback: 14, rainFallback: 0, humidityFallback: 50 },
         { name: 'Cairo', lat: 30.04, lng: 31.23, tempFallback: 37, windDirFallback: 350, windSpeedFallback: 12, rainFallback: 0, humidityFallback: 30 },
         { name: 'Nicosia', lat: 35.18, lng: 33.38, tempFallback: 31, windDirFallback: 200, windSpeedFallback: 15, rainFallback: 0, humidityFallback: 55 }
@@ -363,8 +363,8 @@ export const DashboardPage = () => {
           { latitude: 38.42, longitude: 27.14, source: "NASA_FIRMS", severity: "MEDIUM", windSpeed: 30.0, windDirection: 90.0 }
         ]);
         setIncidents([
-          { latitude: 36.9, longitude: 28.5, aiConfirmedFire: true, reporterName: "Ahmet Yılmaz", intensity: "High", windSpeed: 25.0, windDirection: 135.0 },
-          { latitude: 37.2, longitude: 30.1, aiConfirmedFire: false, reporterName: "Ayşe K.", intensity: "Small", windSpeed: 10.0, windDirection: 270.0 }
+          { latitude: 36.9, longitude: 28.5, aiConfirmedFire: true, reporterName: "Ahmet YÄ±lmaz", intensity: "High", windSpeed: 25.0, windDirection: 135.0 },
+          { latitude: 37.2, longitude: 30.1, aiConfirmedFire: false, reporterName: "AyÅŸe K.", intensity: "Small", windSpeed: 10.0, windDirection: 270.0 }
         ]);
       }
     };
@@ -430,7 +430,7 @@ export const DashboardPage = () => {
               riskPercentage: Math.round(riskScore * 100),
               windDirection: windDir,
               windSpeed: ws,
-              reason: `Live weather: Temp: ${Math.round(temp)}°C, Humidity: ${Math.round(rh)}%, Wind: ${Math.round(ws)} km/h. AI predicted risk.`
+              reason: `Live weather: Temp: ${Math.round(temp)}Â°C, Humidity: ${Math.round(rh)}%, Wind: ${Math.round(ws)} km/h. AI predicted risk.`
             };
           } catch (e) {
             console.warn("Failed to check risk for", spot.name, e);
@@ -545,7 +545,7 @@ export const DashboardPage = () => {
       let initialAiScore = t('dashboard.analyzing', 'Analyzing...');
       
       if (!isVideo && !isImg) {
-        const proceed = window.confirm(t('dashboard.camera_warning', "Bu adres doğrudan bir video akışı (YouTube/Vimeo) veya görsel linki (.jpg/.png) değil. Kamerayı ekleyebilirsiniz ancak Yapay Zeka bu kamerayı otomatik tarayamayacak ve sadece iframe penceresi olarak yüklenecektir. Devam etmek istiyor musunuz?"));
+        const proceed = window.confirm(t('dashboard.camera_warning', "Bu adres doÄŸrudan bir video akÄ±ÅŸÄ± (YouTube/Vimeo) veya gÃ¶rsel linki (.jpg/.png) deÄŸil. KamerayÄ± ekleyebilirsiniz ancak Yapay Zeka bu kamerayÄ± otomatik tarayamayacak ve sadece iframe penceresi olarak yÃ¼klenecektir. Devam etmek istiyor musunuz?"));
         if (!proceed) return;
         initialAiScore = t('dashboard.web_page', 'Web Page');
       }
@@ -750,7 +750,7 @@ export const DashboardPage = () => {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.8rem', marginTop: 'auto' }}>
                 <div style={{ background: 'var(--surface-variant)', padding: '1rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
                   <Thermometer color="var(--primary)" size={24} style={{ marginBottom: '0.5rem' }} />
-                  <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--text-color)' }}>{weatherStats.temp}°C</div>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--text-color)' }}>{weatherStats.temp}Â°C</div>
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>{t('dashboard.temperature')}</div>
                 </div>
                 <div style={{ background: 'var(--surface-variant)', padding: '1rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
@@ -779,7 +779,7 @@ export const DashboardPage = () => {
                      weatherStats.windDir >= 202.5 && weatherStats.windDir < 247.5 ? 'SW' :
                      weatherStats.windDir >= 247.5 && weatherStats.windDir < 292.5 ? 'W' : 'NW'}
                   </div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>{t('dashboard.wind_direction')} ({weatherStats.windDir}°)</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>{t('dashboard.wind_direction')} ({weatherStats.windDir}Â°)</div>
                 </div>
                 <div style={{ background: 'var(--surface-variant)', padding: '1rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
                   <CloudRain color="var(--primary)" size={24} style={{ marginBottom: '0.5rem' }} />
@@ -801,25 +801,25 @@ export const DashboardPage = () => {
                 <button 
                   onClick={() => setIsLegendOpen(!isLegendOpen)}
                   style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: '50%', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'white', backdropFilter: 'blur(4px)' }}
-                  title="Harita İşaretleri Anlamları"
+                  title="Harita Ä°ÅŸaretleri AnlamlarÄ±"
                 >
                   <Info size={20} />
                 </button>
                 
                 {isLegendOpen && (
                   <div className="glass-panel" style={{ position: 'absolute', top: '120%', right: 0, padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.8rem', minWidth: '280px', zIndex: 2000 }}>
-                    <h3 style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-color)', borderBottom: '1px solid var(--outline)', paddingBottom: '0.5rem', marginBottom: '0.2rem' }}>{t('dashboard.legend_title', 'Harita İşaretleri')}</h3>
+                    <h3 style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-color)', borderBottom: '1px solid var(--outline)', paddingBottom: '0.5rem', marginBottom: '0.2rem' }}>{t('dashboard.legend_title', 'Harita Ä°ÅŸaretleri')}</h3>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--text-color)' }}>
-                      <span style={{ width: 12, height: 12, borderRadius: '50%', background: 'var(--error)' }}></span> {t('dashboard.legend_official_fire', 'Resmi Yangın')}
+                      <span style={{ width: 12, height: 12, borderRadius: '50%', background: 'var(--error)' }}></span> {t('dashboard.legend_official_fire', 'Resmi YangÄ±n')}
                     </span>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--text-color)' }}>
-                      <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#eab308' }}></span> {t('dashboard.legend_ai_detected', 'Kullanıcı İhbarı (AI Onaylı)')}
+                      <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#eab308' }}></span> {t('dashboard.legend_ai_detected', 'KullanÄ±cÄ± Ä°hbarÄ± (AI OnaylÄ±)')}
                     </span>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--text-color)' }}>
-                      <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#3b82f6' }}></span> {t('dashboard.legend_ai_not_detected', 'Kullanıcı İhbarı (Onay Bekliyor)')}
+                      <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#3b82f6' }}></span> {t('dashboard.legend_ai_not_detected', 'KullanÄ±cÄ± Ä°hbarÄ± (Onay Bekliyor)')}
                     </span>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--text-color)' }}>
-                      <span style={{ width: 16, height: 12, background: '#eab308', opacity: 0.5, border: '1px dashed #eab308' }}></span> {t('dashboard.legend_spread_area', 'Tahmini Yayılma Bölgesi')}
+                      <span style={{ width: 16, height: 12, background: '#eab308', opacity: 0.5, border: '1px dashed #eab308' }}></span> {t('dashboard.legend_spread_area', 'Tahmini YayÄ±lma BÃ¶lgesi')}
                     </span>
                   </div>
                 )}
@@ -830,19 +830,19 @@ export const DashboardPage = () => {
             <div className="glass-panel" style={{ position: 'absolute', top: '70px', right: '20px', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem', zIndex: 1000, minWidth: '180px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem' }}>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-color)' }}>
-                  <span style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--error)' }}></span> {t('dashboard.stat_nasa', 'Uydu Isı Noktası')}
+                  <span style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--error)' }}></span> {t('dashboard.stat_nasa', 'Uydu IsÄ± NoktasÄ±')}
                 </span>
                 <span style={{ fontWeight: 'bold', color: 'var(--text-color)' }}>{officialFires.length}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem' }}>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-color)' }}>
-                  <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#eab308' }}></span> {t('dashboard.stat_ai_fire', 'Onaylanmış İhbar')}
+                  <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#eab308' }}></span> {t('dashboard.stat_ai_fire', 'OnaylanmÄ±ÅŸ Ä°hbar')}
                 </span>
                 <span style={{ fontWeight: 'bold', color: 'var(--text-color)' }}>{incidents.filter(i => i.aiConfirmedFire).length}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem' }}>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-color)' }}>
-                  <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#3b82f6' }}></span> {t('dashboard.stat_ai_pending', 'Onaylanmamış İhbar')}
+                  <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#3b82f6' }}></span> {t('dashboard.stat_ai_pending', 'OnaylanmamÄ±ÅŸ Ä°hbar')}
                 </span>
                 <span style={{ fontWeight: 'bold', color: 'var(--text-color)' }}>{incidents.filter(i => !i.aiConfirmedFire).length}</span>
               </div>
@@ -864,7 +864,7 @@ export const DashboardPage = () => {
               {/* Static Base Map Layer */}
               <TileLayer
                 noWrap={true}
-                url={theme === 'dark' ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"}
+                url={theme === 'dark' ? "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}" : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
                 attribution='&copy; <a href="https://carto.com/">CartoDB</a>'
               />
 
@@ -906,7 +906,7 @@ export const DashboardPage = () => {
                 <React.Fragment key={`off-${i}`}>
                   <Marker position={[fire.latitude, fire.longitude]} icon={officialFireIcon}>
                     <Popup>
-                      <strong>📡 {t('dashboard.legend_official_fire', 'NASA Yüksek Isı Noktası')}</strong><br/>
+                      <strong>ğŸ“¡ {t('dashboard.legend_official_fire', 'NASA YÃ¼ksek IsÄ± NoktasÄ±')}</strong><br/>
                       Source: {fire.source}<br/>
                       Severity: {fire.severity}
                     </Popup>
@@ -924,10 +924,10 @@ export const DashboardPage = () => {
                 <React.Fragment key={`inc-${i}`}>
                   <Marker position={[inc.latitude, inc.longitude]} icon={inc.aiConfirmedFire ? userVerifiedIcon : userPendingIcon}>
                     <Popup>
-                      <strong>{inc.aiConfirmedFire ? '🔥 Yapay Zeka Onaylı Yangın' : '⚠️ İnceleme Bekliyor'}</strong><br/>
+                      <strong>{inc.aiConfirmedFire ? 'ğŸ”¥ Yapay Zeka OnaylÄ± YangÄ±n' : 'âš ï¸ Ä°nceleme Bekliyor'}</strong><br/>
                       Bildiren: {inc.reporterName || 'Anonim'}<br/>
-                      Şiddet: {inc.intensity === 'High' || inc.intensity === 'Large' ? 'Yüksek' : 
-                               inc.intensity === 'Medium' ? 'Orta' : 'Düşük'}
+                      Åiddet: {inc.intensity === 'High' || inc.intensity === 'Large' ? 'YÃ¼ksek' : 
+                               inc.intensity === 'Medium' ? 'Orta' : 'DÃ¼ÅŸÃ¼k'}
                     </Popup>
                   </Marker>
                   {inc.aiConfirmedFire && (
@@ -956,8 +956,8 @@ export const DashboardPage = () => {
                     <Marker position={[st.lat, st.lng]} icon={getBlurredOverlayIcon(color + '55', 380)} />
                     <Marker position={[st.lat, st.lng]} icon={getTempIcon(st.name, st.temp, color)}>
                       <Popup>
-                        <strong>🌡️ {st.name} Sıcaklık</strong><br/>
-                        Sıcaklık: {st.temp}°C
+                        <strong>ğŸŒ¡ï¸ {st.name} SÄ±caklÄ±k</strong><br/>
+                        SÄ±caklÄ±k: {st.temp}Â°C
                       </Popup>
                     </Marker>
                   </React.Fragment>
@@ -974,9 +974,9 @@ export const DashboardPage = () => {
                     <Marker position={[st.lat, st.lng]} icon={getBlurredOverlayIcon(color + '55', 380)} />
                     <Marker position={[st.lat, st.lng]} icon={getWindIcon(st.name, st.windSpeed, st.windDir, color)}>
                       <Popup>
-                        <strong>💨 {st.name} Rüzgar Hızı</strong><br/>
-                        Rüzgar Hızı: {st.windSpeed} km/h<br/>
-                        Rüzgar Yönü: {st.windDir}°
+                        <strong>ğŸ’¨ {st.name} RÃ¼zgar HÄ±zÄ±</strong><br/>
+                        RÃ¼zgar HÄ±zÄ±: {st.windSpeed} km/h<br/>
+                        RÃ¼zgar YÃ¶nÃ¼: {st.windDir}Â°
                       </Popup>
                     </Marker>
                   </React.Fragment>
@@ -995,8 +995,8 @@ export const DashboardPage = () => {
                     )}
                     <Marker position={[st.lat, st.lng]} icon={getRainIcon(st.name, st.rain, color === 'transparent' ? '#475569' : color)}>
                       <Popup>
-                        <strong>🌧️ {st.name} Yağış Durumu</strong><br/>
-                        Yağış Miktarı: {st.rain} mm
+                        <strong>ğŸŒ§ï¸ {st.name} YaÄŸÄ±ÅŸ Durumu</strong><br/>
+                        YaÄŸÄ±ÅŸ MiktarÄ±: {st.rain} mm
                       </Popup>
                     </Marker>
                   </React.Fragment>
@@ -1013,8 +1013,8 @@ export const DashboardPage = () => {
                     <Marker position={[st.lat, st.lng]} icon={getBlurredOverlayIcon(color + '55', 380)} />
                     <Marker position={[st.lat, st.lng]} icon={getHumidityIcon(st.name, st.humidity || 50, color)}>
                       <Popup>
-                        <strong>💧 {st.name} Nem Oranı</strong><br/>
-                        Bağıl Nem: %{st.humidity || 50}
+                        <strong>ğŸ’§ {st.name} Nem OranÄ±</strong><br/>
+                        BaÄŸÄ±l Nem: %{st.humidity || 50}
                       </Popup>
                     </Marker>
                   </React.Fragment>
@@ -1032,9 +1032,9 @@ export const DashboardPage = () => {
                     <Marker position={[pred.latitude, pred.longitude]} icon={getBlurredOverlayIcon(color + '55', 380)} />
                     <Marker position={[pred.latitude, pred.longitude]} icon={getAiRiskIcon(pred.name || `Hotspot ${idx}`, pred.riskPercentage, color)}>
                       <Popup>
-                        <strong>🤖 AI Fire Risk Prediction</strong><br/>
-                        Risk Oranı: %{pred.riskPercentage}<br/>
-                        Açıklama: {pred.reason}
+                        <strong>ğŸ¤– AI Fire Risk Prediction</strong><br/>
+                        Risk OranÄ±: %{pred.riskPercentage}<br/>
+                        AÃ§Ä±klama: {pred.reason}
                       </Popup>
                     </Marker>
                   </React.Fragment>
@@ -1045,36 +1045,36 @@ export const DashboardPage = () => {
             {/* Weather Overlay Legends (Floating on Map) */}
             {activeLayer === 'temp' && (
               <div className="glass-panel" style={{ position: 'absolute', top: 20, right: 20, zIndex: 1000, padding: '0.8rem', fontSize: '0.8rem', display: 'flex', flexDirection: 'column', gap: '0.4rem', border: '1px solid var(--outline)' }}>
-                <strong style={{ color: 'var(--primary)' }}>🌡️ Sıcaklık Ölçeği</strong>
+                <strong style={{ color: 'var(--primary)' }}>ğŸŒ¡ï¸ SÄ±caklÄ±k Ã–lÃ§eÄŸi</strong>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#dc2626' }}></div>
-                  <span>Çok Sıcak (&gt;35°C)</span>
+                  <span>Ã‡ok SÄ±cak (&gt;35Â°C)</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#f97316' }}></div>
-                  <span>Sıcak (28 - 35°C)</span>
+                  <span>SÄ±cak (28 - 35Â°C)</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#eab308' }}></div>
-                  <span>Ilık (22 - 28°C)</span>
+                  <span>IlÄ±k (22 - 28Â°C)</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#22c55e' }}></div>
-                  <span>Serin (15 - 22°C)</span>
+                  <span>Serin (15 - 22Â°C)</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#2563eb' }}></div>
-                  <span>Soğuk (&lt;15°C)</span>
+                  <span>SoÄŸuk (&lt;15Â°C)</span>
                 </div>
               </div>
             )}
 
             {activeLayer === 'wind' && (
               <div className="glass-panel" style={{ position: 'absolute', top: 20, right: 20, zIndex: 1000, padding: '0.8rem', fontSize: '0.8rem', display: 'flex', flexDirection: 'column', gap: '0.4rem', border: '1px solid var(--outline)', maxWidth: '200px' }}>
-                <strong style={{ color: 'var(--primary)' }}>💨 Rüzgar Hızı Ölçeği</strong>
+                <strong style={{ color: 'var(--primary)' }}>ğŸ’¨ RÃ¼zgar HÄ±zÄ± Ã–lÃ§eÄŸi</strong>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#7e22ce' }}></div>
-                  <span>Fırtına (&gt;30 km/h)</span>
+                  <span>FÄ±rtÄ±na (&gt;30 km/h)</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#2563eb' }}></div>
@@ -1093,32 +1093,32 @@ export const DashboardPage = () => {
 
             {activeLayer === 'rain' && (
               <div className="glass-panel" style={{ position: 'absolute', top: 20, right: 20, zIndex: 1000, padding: '0.8rem', fontSize: '0.8rem', display: 'flex', flexDirection: 'column', gap: '0.4rem', border: '1px solid var(--outline)' }}>
-                <strong style={{ color: 'var(--primary)' }}>🌧️ Yağış Miktarı</strong>
+                <strong style={{ color: 'var(--primary)' }}>ğŸŒ§ï¸ YaÄŸÄ±ÅŸ MiktarÄ±</strong>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#c026d3' }}></div>
-                  <span>Şiddetli Yağış (&gt;2.0 mm)</span>
+                  <span>Åiddetli YaÄŸÄ±ÅŸ (&gt;2.0 mm)</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#7e22ce' }}></div>
-                  <span>Orta Yağış (0.5 - 2.0 mm)</span>
+                  <span>Orta YaÄŸÄ±ÅŸ (0.5 - 2.0 mm)</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#2563eb' }}></div>
-                  <span>Hafif Yağış (&gt;0 mm)</span>
+                  <span>Hafif YaÄŸÄ±ÅŸ (&gt;0 mm)</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#475569' }}></div>
-                  <span>Yağış Yok (0 mm)</span>
+                  <span>YaÄŸÄ±ÅŸ Yok (0 mm)</span>
                 </div>
               </div>
             )}
 
             {activeLayer === 'humidity' && (
               <div className="glass-panel" style={{ position: 'absolute', top: 20, right: 20, zIndex: 1000, padding: '0.8rem', fontSize: '0.8rem', display: 'flex', flexDirection: 'column', gap: '0.4rem', border: '1px solid var(--outline)' }}>
-                <strong style={{ color: 'var(--primary)' }}>💧 Bağıl Nem Oranı</strong>
+                <strong style={{ color: 'var(--primary)' }}>ğŸ’§ BaÄŸÄ±l Nem OranÄ±</strong>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#1d4ed8' }}></div>
-                  <span>Çok Nemli (&gt;75%)</span>
+                  <span>Ã‡ok Nemli (&gt;75%)</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#2563eb' }}></div>
@@ -1137,14 +1137,14 @@ export const DashboardPage = () => {
 
             {activeLayer === 'airisk' && (
               <div className="glass-panel" style={{ position: 'absolute', top: 20, right: 20, zIndex: 1000, padding: '0.8rem', fontSize: '0.8rem', display: 'flex', flexDirection: 'column', gap: '0.4rem', border: '1px solid var(--outline)' }}>
-                <strong style={{ color: 'var(--primary)' }}>🤖 AI Yangın Riski</strong>
+                <strong style={{ color: 'var(--primary)' }}>ğŸ¤– AI YangÄ±n Riski</strong>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#dc2626' }}></div>
-                  <span>Aşırı Risk (&gt;80%)</span>
+                  <span>AÅŸÄ±rÄ± Risk (&gt;80%)</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ea580c' }}></div>
-                  <span>Yüksek Risk (60 - 80%)</span>
+                  <span>YÃ¼ksek Risk (60 - 80%)</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#eab308' }}></div>
@@ -1152,11 +1152,11 @@ export const DashboardPage = () => {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#22c55e' }}></div>
-                  <span>Düşük Risk (20 - 40%)</span>
+                  <span>DÃ¼ÅŸÃ¼k Risk (20 - 40%)</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#2563eb' }}></div>
-                  <span>Güvenli (&lt;20%)</span>
+                  <span>GÃ¼venli (&lt;20%)</span>
                 </div>
               </div>
             )}
@@ -1236,7 +1236,7 @@ export const DashboardPage = () => {
                       brokenImages[cam.id] ? (
                         <div style={{ width: '100%', height: '120px', background: 'var(--surface-variant)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)', gap: '0.5rem', fontSize: '0.8rem' }}>
                           <AlertTriangle size={24} color="var(--error)" />
-                          <span>{t('dashboard.cam_offline', 'Kamera Çevrimdışı')}</span>
+                          <span>{t('dashboard.cam_offline', 'Kamera Ã‡evrimdÄ±ÅŸÄ±')}</span>
                         </div>
                       ) : (
                         <img 
@@ -1256,7 +1256,7 @@ export const DashboardPage = () => {
                            cam.aiScore === 'Web Page' ? 'Web Feed' : 
                            cam.aiScore}
                         </span>
-                        <button onClick={() => removeCamera(cam.id)} style={{ background: 'transparent', border: 'none', color: 'var(--error)', cursor: 'pointer', fontSize: '1rem', lineHeight: 1 }}>×</button>
+                        <button onClick={() => removeCamera(cam.id)} style={{ background: 'transparent', border: 'none', color: 'var(--error)', cursor: 'pointer', fontSize: '1rem', lineHeight: 1 }}>Ã—</button>
                       </div>
                     </div>
                   </div>
@@ -1306,7 +1306,7 @@ export const DashboardPage = () => {
                 type="text" 
                 value={newCamera.url}
                 onChange={e => setNewCamera({...newCamera, url: e.target.value})}
-                placeholder="Örn: https://www.youtube.com/watch?v=hLDdZ8144p4" 
+                placeholder="Ã–rn: https://www.youtube.com/watch?v=hLDdZ8144p4" 
                 style={{ width: '100%', background: 'var(--surface)', border: '1px solid var(--outline)', color: 'var(--text-color)', padding: '0.8rem', borderRadius: '4px' }} 
               />
             </div>
@@ -1326,3 +1326,4 @@ export const DashboardPage = () => {
     </div>
   );
 };
+
