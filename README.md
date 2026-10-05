@@ -1,50 +1,197 @@
-# Sylvanis: Turkey Wildfire Intelligence & Detection System 🔥🛰️
+# Sylvanis 🔥🛰️
+
+> AI-Powered Wildfire Intelligence & Detection System for Turkey — Internship Project
+> Türkiye için Yapay Zeka Destekli Orman Yangını Tespit ve Analiz Sistemi — Staj Projesi
 
 ![React](https://img.shields.io/badge/Frontend-React%20%2B%20Vite-61DAFB?style=for-the-badge&logo=react)
 ![Spring Boot](https://img.shields.io/badge/Backend-Spring%20Boot%203-6DB33F?style=for-the-badge&logo=springboot)
 ![Python](https://img.shields.io/badge/AI%20Service-Python%20%2B%20Flask-3776AB?style=for-the-badge&logo=python)
 ![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-4169E1?style=for-the-badge&logo=postgresql)
 
-## 📌 Project Overview
-**Sylvanis** is a full-stack, AI-powered environmental monitoring platform designed to detect and track forest fires in real-time across Turkey. By integrating **NASA's FIRMS Satellite API** with an intelligent **Machine Learning prediction engine**, Sylvanis provides a comprehensive, responsive dashboard for early fire detection and management.
-
-This project was built from the ground up to showcase a scalable, microservices-oriented architecture suitable for enterprise-level applications.
-
-## 🚀 Key Features
-- **Real-Time Satellite Data**: Hourly synchronization with NASA FIRMS API to pinpoint active thermal anomalies specifically filtered for the Turkey region.
-- **AI-Powered Risk Analysis**: A machine learning model that analyzes local weather parameters (Wind, Humidity, Temperature, Rain) to calculate the Canadian FWI (Fire Weather Index) and predict fire probability.
-- **Computer Vision Verification**: Uploaded images from users are processed by an AI vision service to confirm the presence of fire or smoke.
-- **Interactive Regional Map**: A responsive, Leaflet-based dynamic map that renders thermal points, weather stations across major Turkish cities, and user-reported incidents with custom UI layers.
-- **Secure Admin Dashboard**: JWT / Basic Auth secured backend that allows administrators to verify, reject, and manage regional fire reports.
-- **Fully Responsive & Internationalized**: Mobile-first design architecture using modern CSS, equipped with multi-language (i18n) support.
-
-## 🏗️ Architecture & Folder Structure
-The project follows a clean, modular architecture, splitting responsibilities into dedicated tiers:
-
-```text
-📦 Sylvanis-Fire-System
- ┣ 📂 backend/         # Java Spring Boot REST API
- ┃ ┣ 📂 src/main/...   # Controllers, Models, Repositories, Security configs
- ┃ ┗ 📜 Dockerfile     # Containerization script for cloud deployment
- ┣ 📂 frontend/        # React + TypeScript + Vite SPA
- ┃ ┣ 📂 src/           # Components, Contexts, Pages, i18n locales
- ┃ ┗ 📜 package.json   # NPM dependencies
- ┗ 📂 ai-service/      # Python Machine Learning Microservice
-   ┣ 📜 app.py         # Flask API for Vision and Weather risk inference
-   ┗ 📜 model.pkl      # Pre-trained ML weights
-```
-
-## 💻 Tech Stack
-* **Frontend**: React 18, TypeScript, Vite, Leaflet, GSAP (Animations), Recharts.
-* **Backend**: Java 17, Spring Boot 3, Spring Security, Spring Data JPA, Bucket4j (Rate Limiting).
-* **Database**: PostgreSQL (Neon.tech).
-* **AI / ML**: Python, Flask, Scikit-learn, OpenCV.
-* **DevOps**: Docker, Vercel (Frontend Hosting), Render (Backend Hosting).
-
-## 🛡️ Security Implementations
-- **Rate Limiting**: Integrated Bucket4j to limit API requests per IP and prevent DDoS attacks on reporting endpoints.
-- **Authentication**: Spring Security securing administrative API routes.
-- **Data Integrity**: Sanitized inputs via Hibernate/JPA to prevent SQL injections, and React's innate XSS protection.
+**Live Demo / Canlı Demo:** [sylvanis.vercel.app](https://sylvanis.vercel.app)
 
 ---
-*Built as a professional showcase of full-stack engineering, cloud deployment, and AI integration.*
+
+## 🇬🇧 English
+
+Sylvanis is a full-stack, AI-powered wildfire intelligence platform built for Turkey. It integrates **NASA FIRMS satellite data**, **deep learning-based fire image detection**, and a **Random Forest weather risk analysis model** to detect, predict, and map forest fires in real time.
+
+Developed during an internship, this project showcases a microservices-oriented architecture with three independently deployable services.
+
+### Features
+
+- **Real-Time Satellite Data** — Hourly sync with NASA FIRMS API, filtered for the Turkey region, to detect active thermal anomalies
+- **Deep Learning Fire Image Detection** — A trained deep learning model processes user-uploaded images to detect fire or smoke presence
+- **Random Forest Risk Analysis** — A machine learning model trained on historical weather data (wind speed, humidity, temperature, rainfall) calculates the Canadian Fire Weather Index (FWI) and predicts fire risk probability
+- **Interactive Map** — Leaflet-based dynamic map showing thermal hotspots, weather stations across major Turkish cities, and user-reported incidents
+- **Secure Admin Dashboard** — JWT-authenticated admin panel to review and manage fire reports
+- **User Incident Reporting** — Registered users can submit fire reports with photos from the field
+
+### Architecture
+
+```
+Sylvanis/
+├── frontend/       # React + Vite — User dashboard & interactive map
+├── backend/        # Spring Boot 3 — Core REST API, auth, NASA FIRMS sync
+└── ai-service/     # Python + Flask — Deep learning & ML inference
+```
+
+| Service | Technology | Responsibility |
+|---------|-----------|----------------|
+| **Frontend** | React 18, Vite, Leaflet, Tailwind CSS | UI, map visualization, incident reporting |
+| **Backend** | Java 21, Spring Boot 3, JWT | REST API, user management, satellite data sync |
+| **AI Service** | Python, Flask, scikit-learn | Fire image detection, weather risk prediction |
+| **Database** | PostgreSQL | Incidents, users, fire data |
+
+### AI & Machine Learning
+
+**Fire Image Detection (Deep Learning)**
+- Trained on fire and smoke image datasets
+- Classifies uploaded images: "Fire Detected", "Smoke Detected", or "No Fire"
+- Integrated into the incident report submission flow
+
+**Weather Risk Analysis (Random Forest)**
+- Trained on historical weather and fire occurrence data for Turkey
+- Input features: wind speed, humidity, temperature, rainfall
+- Output: Canadian FWI score + fire probability percentage
+- Training script: `train_weather_model.py`
+
+### Getting Started
+
+**Prerequisites:** Java 21+, Maven 3.9+, Node.js 20+, Python 3.10+, PostgreSQL
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/T-anay/Sylvanis.git
+cd Sylvanis
+```
+
+**2. Start the AI service**
+```bash
+cd ai-service
+pip install -r requirements.txt
+# Configure .env (see Environment Variables)
+python app/main.py
+```
+Runs on `http://localhost:5001`.
+
+**3. Start the backend**
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+Runs on `http://localhost:8080`.
+
+**4. Start the frontend**
+```bash
+cd frontend
+npm install
+npm run dev
+```
+Available at `http://localhost:5173`.
+
+### Environment Variables
+
+**Backend (`application-dev.properties`)**
+
+| Variable | Description |
+|----------|-------------|
+| `spring.datasource.url` | PostgreSQL JDBC connection string |
+| `spring.datasource.username` | Database username |
+| `spring.datasource.password` | Database password |
+| `jwt.secret` | JWT signing key |
+| `nasa.firms.api-key` | API key from [NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/api/map_key/) |
+| `ai.service.url` | URL of the running AI service |
+
+**AI Service (`.env`)**
+
+| Variable | Description |
+|----------|-------------|
+| `MODEL_PATH` | Path to the trained model file |
+| `FLASK_PORT` | Flask server port (default: 5001) |
+
+**Frontend (`frontend/.env`)**
+
+| Variable | Description |
+|----------|-------------|
+| `VITE_API_BASE_URL` | Backend API base URL |
+
+---
+
+## 🇹🇷 Türkçe
+
+Sylvanis, Türkiye için geliştirilmiş yapay zeka destekli bir orman yangını tespit ve takip platformudur. **NASA FIRMS uydu verilerini**, **derin öğrenme tabanlı yangın görüntü tespitini** ve **Random Forest hava durumu risk analizini** bir araya getirerek orman yangınlarını gerçek zamanlı olarak tespit eder, tahmin eder ve haritalar.
+
+Bir staj sürecinde geliştirilen bu proje, birbirinden bağımsız çalışabilen üç servis içeren mikroservis mimarisini sergilemektedir.
+
+### Özellikler
+
+- **Gerçek Zamanlı Uydu Verisi** — Türkiye bölgesi için filtrelenmiş NASA FIRMS API ile saatlik senkronizasyon
+- **Derin Öğrenme ile Yangın Görüntü Tespiti** — Eğitilmiş derin öğrenme modeli, kullanıcı tarafından yüklenen görüntülerde yangın veya duman tespiti yapar
+- **Random Forest Risk Analizi** — Geçmiş hava durumu verilerine (rüzgar hızı, nem, sıcaklık, yağış) dayalı eğitilmiş makine öğrenmesi modeli; Kanada FWI skoru ve yangın olasılığı hesaplar
+- **İnteraktif Harita** — Termal noktaları, Türkiye'nin büyük şehirlerindeki hava istasyonlarını ve kullanıcı raporlarını gösteren Leaflet tabanlı harita
+- **Güvenli Admin Paneli** — JWT kimlik doğrulamalı admin paneli ile yangın raporlarını yönetme
+- **Kullanıcı Olay Bildirimi** — Kayıtlı kullanıcılar fotoğraflı yangın bildirimi yapabilir
+
+### Mimari
+
+```
+Sylvanis/
+├── frontend/       # React + Vite — Kullanıcı paneli ve interaktif harita
+├── backend/        # Spring Boot 3 — REST API, kimlik doğrulama, uydu veri senkronizasyonu
+└── ai-service/     # Python + Flask — Derin öğrenme ve ML çıkarımı
+```
+
+| Servis | Teknoloji | Sorumluluk |
+|--------|-----------|------------|
+| **Frontend** | React 18, Vite, Leaflet, Tailwind CSS | Arayüz, harita görselleştirme, olay bildirimi |
+| **Backend** | Java 21, Spring Boot 3, JWT | REST API, kullanıcı yönetimi, uydu veri senkronizasyonu |
+| **AI Servisi** | Python, Flask, scikit-learn | Yangın görüntü tespiti, hava risk tahmini |
+| **Veritabanı** | PostgreSQL | Olaylar, kullanıcılar, yangın verileri |
+
+### Yapay Zeka ve Makine Öğrenmesi
+
+**Yangın Görüntü Tespiti (Derin Öğrenme)**
+- Yangın ve duman görüntü veri setleri üzerinde eğitildi
+- Yüklenen görüntüleri sınıflandırır: "Yangın Tespit Edildi", "Duman Tespit Edildi", "Yangın Yok"
+- Olay bildirimi akışına entegre edildi
+
+**Hava Durumu Risk Analizi (Random Forest)**
+- Türkiye için geçmiş hava durumu ve yangın oluşum verileriyle eğitildi
+- Girdi: Rüzgar hızı, nem, sıcaklık, yağış
+- Çıktı: Kanada FWI skoru + yangın olasılık yüzdesi
+- Eğitim betiği: `train_weather_model.py`
+
+### Başlarken
+
+**Gereksinimler:** Java 21+, Maven 3.9+, Node.js 20+, Python 3.10+, PostgreSQL
+
+**1. Repoyu klonlayın**
+```bash
+git clone https://github.com/T-anay/Sylvanis.git
+cd Sylvanis
+```
+
+**2. AI servisini başlatın**
+```bash
+cd ai-service
+pip install -r requirements.txt
+# .env dosyasını yapılandırın (Ortam Değişkenleri bölümüne bakın)
+python app/main.py
+```
+`http://localhost:5001` adresinde çalışır.
+
+**3. Backend'i başlatın**
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+`http://localhost:8080` adresinde çalışır.
+
+**4. Frontend'i başlatın**
+```bash
+cd frontend
+npm install
+npm run dev
+```
+`http://localhost:5173` adresinde erişilebilir.
